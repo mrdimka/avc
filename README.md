@@ -76,7 +76,9 @@ kube-system   storage-provisioner                     1/1       Running   0     
 ## Links
 
 https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/ 
+
 https://github.com/kubernetes/minikube/releases 
+
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 
