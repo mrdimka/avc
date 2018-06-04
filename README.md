@@ -10,7 +10,7 @@ First of all make sure you don't have older versions of docker installed
 ```
 # apt-get remove docker docker-engine docker.io
 ```
-Install prerequisites 
+Install prerequisites
 ```
 # apt-get update
 # apt-get install apt-transport-https ca-certificates curl software-properties-common
@@ -26,7 +26,7 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.27.0/minik
 ```
 
 ## Install kubectl
-One of the ways to install kubectl is to use the the official kubernetes apt repository 
+One of the ways to install kubectl is to use the the official kubernetes apt repository
 
 ```
 # curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -72,13 +72,41 @@ kube-system   kubernetes-dashboard-5498ccf677-jsndf   1/1       Running   0     
 kube-system   storage-provisioner                     1/1       Running   0          4m
 ```
 
+Task 2
+======
+Since you already have a working kubernetes cluster from Task 1
 
+## Clone repository
+
+```
+# git clone https://github.com/mrdimka/avc.git
+```
+
+## Pull needed docker images
+They can be pulled by kubectl but this will speed up things and also have an overview of how much it will take to be pulled
+
+```
+# docker pull mariadb:latest
+# docker pull efthymiosh/lobsters
+```
+
+## Start MariaDB pod
+
+```
+kubectl create -f lobsters/deployments/mariadb-deployment.yaml
+kubectl create -f lobsters/services/mariadb-service.yaml
+```
+
+## Start lobsters pod
+
+```
+kubectl create -f lobsters/deployments/lobsters-deployment.yaml
+kubectl create -f lobsters/services/lobsters-service.yaml
+```
 ## Links
 
-https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/ 
+https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
 
-https://github.com/kubernetes/minikube/releases 
+https://github.com/kubernetes/minikube/releases
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
-
-

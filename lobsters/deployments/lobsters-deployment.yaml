@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: lobsters
+spec:
+  template:
+    metadata:
+      labels:
+        app: lobsters
+    spec:
+      containers:
+      - image: efthymiosh/lobsters
+        name: lobsters
+        env:
+          # Use secret in real usage
+        - name: MARIADB_HOST
+          value: mariadb
+        - name: MARIADB_PORT
+          value: "3306"
+        - name: MARIADB_PASSWORD
+          value: password
+        - name: MARIADB_USER
+          value: root
+        - name: LOBSTER_DATABASE
+          value: lobsters
+        - name: LOBSTER_SITE_NAME
+          value: lobstersv1
+        - name: RAILS_ENV
+          value: development
+        - name: LOBSTER_HOSTNAME
+          value: localhost
+        - name: VIRTUAL_HOST
+          value: lobsters.local
+        - name: RAILS_MAX_THREADS
+          value: "5"
+        ports:
+        - containerPort: 3000
+          name: lobsters
+       
