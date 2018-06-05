@@ -1,3 +1,5 @@
+minikube start --vm-driver=none
+minikube addons enable ingress
 docker pull mariadb:latest
 docker pull efthymiosh/lobsters
 kubectl create -f ../deployments/mariadb-deployment.yaml

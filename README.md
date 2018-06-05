@@ -1,7 +1,7 @@
 Task 1
 ======
 
-I have used a vagrant ubuntu 16.04 box with just base OS installed.
+I have used a ubuntu 16.04 VirtualBox with just base OS installed.
 All commands were executed as root instead of sudo execution.
 
 ## Install Docker
@@ -41,7 +41,7 @@ EOF
 Since I have been using vagrant with virtualbox provider I thought the wise thing to do was to start minikube with vm-driver none.
 
 ```
-minikube start --vm-driver=none
+# minikube start --vm-driver=none
 ```
 
 ## Check whether you have a working kubernets cluster
@@ -93,16 +93,30 @@ They can be pulled by kubectl but this will speed up things and also have an ove
 ## Start MariaDB pod
 
 ```
-kubectl create -f lobsters/deployments/mariadb-deployment.yaml
-kubectl create -f lobsters/services/mariadb-service.yaml
+# kubectl create -f lobsters/deployments/mariadb-deployment.yaml
+# kubectl create -f lobsters/services/mariadb-service.yaml
 ```
 
 ## Start lobsters pod
 
 ```
-kubectl create -f lobsters/deployments/lobsters-deployment.yaml
-kubectl create -f lobsters/services/lobsters-service.yaml
+# kubectl create -f lobsters/deployments/lobsters-deployment.yaml
+# kubectl create -f lobsters/services/lobsters-service.yaml
 ```
+## Enable minikube ingress addon
+```
+# minikube addons enable ingress
+```
+##  Create Ingress
+```
+# kubectl create -f lobsters/services/lobsters-ingress.yaml
+```
+
+## Add lobsters.local entry on your hosts file
+```
+# echo `minikube ip` lobsters.local >> /etc/hosts
+```
+
 ## Links
 
 https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
